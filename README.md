@@ -14,7 +14,7 @@ DeepSeek 官方导出的 zip 无法直接导入 Cherry Studio——Cherry 只认
 
 ## 为什么会有这个工具
 
-DeepSeek C 端开始限额后，不少用户把会话迁到 API 客户端。Cherry Studio 是其中体验最接近的一个，但它的导入功能不支持 DeepSeek 的导出结构（`export_format_version: 3`）。手动整理几万条消息不现实，所以写了这个转换器。
+DeepSeek C 端开始限额后，不少用户把会话迁到 API 客户端。Cherry Studio 是常用的一个，但它的导入功能不支持 DeepSeek 的导出结构（`export_format_version: 3`）。手动整理几万条消息不现实，所以写了这个转换器。
 
 ## 功能
 
@@ -140,6 +140,17 @@ build.bat                                # 打包 exe 到 dist/
 ## 示例数据
 
 `samples/示例DeepSeek导出.zip` 是一份完全虚构的导出包，覆盖思考过程、分支、内容过滤、图片附件和缺失附件，可用来试转换。
+
+## 反馈与维护
+
+这是个人业余时间维护的小工具，难免有疏漏和没覆盖到的场景。
+
+- 遇到问题、发现 bug、有功能建议、文档写错，都欢迎提 Issue，最好附上系统版本、操作步骤和报错截图
+- 也欢迎直接提 PR
+- 不保证能及时回复，但都会看
+- 使用前请备份 DeepSeek 原始导出包和客户端数据
+
+> This is a small hobby project. Bug reports, feature requests and documentation fixes are all welcome via Issues — please include your OS version, steps to reproduce and any error message.
 
 ## 许可与声明
 

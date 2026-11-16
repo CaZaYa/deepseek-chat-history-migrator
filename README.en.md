@@ -56,6 +56,10 @@ python -m unittest discover -s tests
 build.bat
 ```
 
+## Feedback
+
+This is a small hobby project maintained in spare time. Bug reports, feature requests and documentation fixes are welcome via Issues — please include your OS version, steps to reproduce and any error message. Replies may be slow.
+
 ## License
 
 MIT
