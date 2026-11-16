@@ -1,0 +1,44 @@
+name: build
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build dependencies
+        run: python -m pip install --upgrade pyinstaller
+
+      - name: Run tests
+        run: python -m unittest discover -s tests
+
+      - name: Build executables
+        run: |
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name DeepSeek2Cherry --paths src --icon assets/icon.ico --add-data "assets/icon.ico;assets" --distpath dist --workpath build run_gui.py
+          python -m PyInstaller --noconfirm --clean --onefile --console --name DeepSeek2Cherry-CLI --paths src --icon assets/icon.ico --distpath dist --workpath build run_cli.py
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeepSeek2Cherry-windows
+          path: dist/*.exe
+
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
